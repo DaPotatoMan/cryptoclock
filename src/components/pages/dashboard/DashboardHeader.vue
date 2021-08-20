@@ -1,7 +1,7 @@
 <template>
    <div ref="root" class="view-dashboard-header" :class="{ isScrollTop }">
       <div class="header-brand">
-         <img class="header-brand-logo" draggable="false" src="/logo.png">
+         <img class="header-brand-logo" draggable="false" src="/assets/icons/logo.png">
          <h1 class="header-brand-label">CryptoClock.</h1>
       </div>
 

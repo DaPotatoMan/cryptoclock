@@ -6,3 +6,6 @@ dist-ssr
 
 # Log files
 *.log
+
+# Local files
+public/*.zip
