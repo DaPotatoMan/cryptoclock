@@ -6,10 +6,16 @@
       </div>
 
       <div class="header-actions">
-         <button class="header-actions-button" @click="switchTheme">Theme</button>
+         <button class="header-actions-button" @click="switchTheme">
+            <icon-ic-sharp-light-mode v-if="store.darkTheme" />
+            <icon-ic-sharp-dark-mode v-else />
+            Theme
+         </button>
 
-         <router-link to="/logout">
-            <button class="header-actions-button">Log out</button>
+         <router-link to="/logout" draggable="false">
+            <button class="header-actions-button">
+               <icon-ic-baseline-logout />Log out
+            </button>
          </router-link>
       </div>
    </div>
@@ -44,7 +50,7 @@
       @apply flex items-center ml-auto;
 
       &-button {
-         @apply flex ml-5 outline-none
+         @apply flex ml-5 gap-x-2 outline-none
          text-base text-default/70 font-medium
          active:(transform scale-98);
 
@@ -57,6 +63,8 @@
 </style>
 
 <script lang="ts" setup>
+import store from '~/plugins/store';
+
 const root = ref();
 const isScrollTop = ref(true);
 
@@ -74,6 +82,7 @@ onUnmounted(() => {
 });
 
 const switchTheme = () => {
-   document.documentElement.classList.toggle('theme-dark');
+   const state = document.documentElement.classList.toggle('theme-dark');
+   store.value.darkTheme = state;
 };
 </script>
