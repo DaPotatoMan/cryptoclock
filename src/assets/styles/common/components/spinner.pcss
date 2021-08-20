@@ -1,0 +1,28 @@
+.spinner-component {
+   @apply rounded-full;
+
+   height: var(--spinner-size, 24px);
+   width: var(--spinner-size, 24px);
+
+   border: var(--spinner-border-size, 2px) solid
+      var(--spinner-color, rgba(0, 0, 0, 0.1));
+   border-bottom-color: transparent;
+
+   animation: rotate 2s linear infinite;
+   will-change: transform;
+}
+
+@keyframes rotate {
+   30% {
+      transform: rotate(360deg);
+   }
+
+   65% {
+      transform: rotate(720deg);
+   }
+   
+
+   100% {
+      transform: rotate(1440deg);
+   }
+}

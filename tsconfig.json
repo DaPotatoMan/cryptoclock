@@ -1,0 +1,32 @@
+{
+   "compilerOptions": {
+      "baseUrl": ".",
+      "target": "ES2016",
+      "module": "ESNext",
+      "moduleResolution": "node",
+      "incremental": false,
+      "skipLibCheck": true,
+      "strict": true,
+      "sourceMap": true,
+      "resolveJsonModule": true,
+      "esModuleInterop": true,
+      "noUnusedLocals": true,
+      "strictNullChecks": true,
+      "importHelpers": true,
+      "forceConsistentCasingInFileNames": true,
+
+      "lib": ["DOM", "ESNext"],
+      "types": [
+         "vite/client",
+         "vite-plugin-pages/client",
+         "vite-plugin-vue-layouts/client"
+      ],
+      "paths": {
+         "~/*": ["src/*"],
+         "@assets/*": ["src/assets/*"],
+         "@styles/*": ["src/assets/styles/*"]
+      }
+   },
+   "include": ["./*.ts", "types/*.d.ts", "src/**/*.ts", "src/**/*.vue"],
+   "exclude": [".git", "node_modules", "dist"]
+}

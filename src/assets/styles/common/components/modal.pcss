@@ -1,0 +1,27 @@
+html.no-scroll {
+   @apply overflow-hidden;
+}
+
+.modal-wrapper {
+   @apply w-screen fixed inset-0 z-2
+   flex items-center justify-center
+   bg-black/40 cursor-default;
+
+   &-overlay {
+      @apply absolute inset-0 -z-1;
+   }
+
+   &-slot {
+      @apply p-4 px-6 h-550px w-380px max-h-[80%] max-w-[90%]
+      bg-default-elevated rounded-xl shadow-md;
+
+      will-change: transform;
+      animation: modal-slot-appear 300ms ease-out;
+   }
+}
+
+@keyframes modal-slot-appear {
+   0% {
+      transform: scale(0.94) translateY(30px);
+   }
+}

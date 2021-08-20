@@ -1,0 +1,30 @@
+.cta-button {
+   --spinner-color: #fff;
+   
+   @apply px-4 py-2 relative overflow-hidden
+      flex items-center justify-center
+      rounded-lg outline-none transition-colors
+      uppercase font-semibold text-sm
+      text-inverse bg-inverse hover:bg-opacity-87;
+
+   &:focus {
+      @apply outline-none;
+   }
+
+   &.disabled {
+      @apply bg-inverse bg-opacity-60 !important;
+   }
+
+   &.loading,
+   &.disabled {
+      @apply pointer-events-none;
+   }
+
+   &--spinner {
+      @apply w-5 h-5;
+   }
+
+   &--slot {
+      @apply flex items-center justify-center;
+   }
+}
