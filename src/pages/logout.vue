@@ -4,11 +4,13 @@
 
 <script lang="ts" setup>
 import { useRouter } from 'vue-router';
-import store from '~/plugins/store';
+import { disconnectWallet } from '~/plugins/api/wallet/sdk';
 
 const router = useRouter();
-store.value.isAuthorized = false;
-router.push('/login');
+disconnectWallet().then(async () => {
+   await router.push('/login');
+   window.location.reload();
+});
 </script>
 
 <route>

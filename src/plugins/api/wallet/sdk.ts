@@ -1,3 +1,5 @@
+import store from '~/plugins/store';
+
 const { TezosToolkit, BeaconWallet } = window.walletUtils;
 
 const isProduction = import.meta.env.PROD;
@@ -19,6 +21,11 @@ export function connectWallet() {
       tezos.setWalletProvider(wallet);
       return wallet;
    });
+}
+
+export async function disconnectWallet() {
+   await wallet.disconnect();
+   store.value.isAuthorized = false;
 }
 
 export async function getContractInstance() {
