@@ -28,6 +28,7 @@ declare module 'vue' {
     TransactionHeader: typeof import('./../src/components/pages/transactions/utils/TransactionHeader.vue')['default']
     TransactionList: typeof import('./../src/components/pages/dashboard/TransactionList.vue')['default']
     TransactionListItem: typeof import('./../src/components/pages/dashboard/TransactionListItem.vue')['default']
+    TransactionListState: typeof import('./../src/components/pages/dashboard/TransactionListState.vue')['default']
     TransactionRecipient: typeof import('./../src/components/pages/transactions/TransactionRecipient.vue')['default']
   }
 }

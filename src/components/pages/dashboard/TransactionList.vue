@@ -19,6 +19,7 @@
    </section>
 
    <Spinner v-if="isLoading" class="transaction-list-loader" />
+   <TransactionListState v-else-if="list.length <= 0" />
    <div v-else-if="list" class="transaction-list-items">
       <TransactionListItem
          v-for="(transaction, index) in list"
@@ -41,7 +42,7 @@ const list = ref([] as Transactions);
 let updateListTimer: NodeJS.Timeout;
 const updateList = async () => {
    await getTransactions().then((data) => {
-      list.value = data.all;
+      list.value = data.user;
       updateListTimer = setTimeout(updateList, 2000);
    });
    isLoading.value = false;
