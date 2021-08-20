@@ -7,7 +7,10 @@
 
       <div class="header-actions">
          <button class="header-actions-button" @click="switchTheme">Theme</button>
-         <button class="header-actions-button">Settings</button>
+
+         <router-link to="/logout">
+            <button class="header-actions-button">Log out</button>
+         </router-link>
       </div>
    </div>
 </template>
