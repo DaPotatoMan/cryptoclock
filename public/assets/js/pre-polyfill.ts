@@ -3,6 +3,5 @@ Object.assign(window, {
       return window.global || window;
    },
 
-   require: () => {},
-   axios: () => {}
+   require: () => {}
 });
