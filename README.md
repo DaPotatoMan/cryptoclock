@@ -1,7 +1,5 @@
 <div align="center">
-<img width="96px" src="public/assets/icons/logo.png" size=15 draggable="false">
-<br/>
-<br/>
+<img width="96px" src="public/assets/icons/logo.png" draggable="false">
 <h1>Crypto Clock</h1>
 
 [![Build](https://github.com/DaPotatoMan/cryptoclock/actions/workflows/build.yml/badge.svg)](https://github.com/DaPotatoMan/cryptoclock/actions/workflows/build.yml)
