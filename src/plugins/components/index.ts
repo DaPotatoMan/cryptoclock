@@ -1,5 +1,4 @@
 import { App } from 'vue';
-// import './polyfill';
 
 // Import Global APIs
 import 'vue-global-api/ref';

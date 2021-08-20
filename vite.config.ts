@@ -6,6 +6,7 @@ import Layouts from 'vite-plugin-vue-layouts';
 import ViteIcons, { ViteIconsResolver } from 'vite-plugin-icons';
 import ViteComponents from 'vite-plugin-components';
 import WindiCSS from 'vite-plugin-windicss';
+import { VitePWA } from 'vite-plugin-pwa';
 
 // PostCSS Plugins
 import pcssNested from 'postcss-nested';
@@ -37,7 +38,41 @@ export default defineConfig({
          ]
       }),
       ViteIcons(),
-      WindiCSS()
+      WindiCSS(),
+      VitePWA({
+         srcDir: 'src',
+         strategies: 'generateSW',
+         registerType: 'autoUpdate',
+         includeAssets: ['/favicon.ico'],
+         manifest: {
+            name: 'CryptoClock',
+            short_name: 'CryptoClock',
+            theme_color: '#ffffff',
+            icons: [
+               {
+                  src: '/assets/icons/android-chrome-192x192.png',
+                  sizes: '192x192',
+                  type: 'image/png'
+               },
+               {
+                  src: '/assets/icons/logo.png',
+                  sizes: '192x192',
+                  type: 'image/png'
+               },
+               {
+                  src: '/assets/icons/logo-512x512.png',
+                  sizes: '512x512',
+                  type: 'image/png'
+               },
+               {
+                  src: '/assets/icons/logo-512x512.png',
+                  sizes: '512x512',
+                  type: 'image/png',
+                  purpose: 'any maskable'
+               }
+            ]
+         }
+      })
    ],
 
    css: {
