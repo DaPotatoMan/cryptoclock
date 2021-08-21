@@ -9,7 +9,7 @@
          </li>
          <li class="data-item">
             <span class="data-item-label">Date</span>
-            <span class="data-item-value">{{ data.datetime.toDateString() }}</span>
+            <span class="data-item-value">{{ data.datetime.toUTCString() }}</span>
          </li>
          <li class="data-item">
             <span class="data-item-label">Amount</span>
@@ -69,17 +69,20 @@ const props = defineProps({
 });
 
 const isProcessing = ref(false);
-const fee = estimateFee(props.data.amount);
-const amount = reactive({
-   fee,
-   total: fee + props.data.amount
+
+const amount = computed(() => {
+   const { amount: value } = props.data;
+   const fee = estimateFee(value);
+   const total = fee + value;
+
+   return { fee, total };
 });
 
 // Methods
 const showModal = inject('showModal');
 const schedule = async () => {
    isProcessing.value = true;
-   await scheduleTransaction({ ...props.data, fee }).then(() => {
+   await scheduleTransaction({ ...props.data, fee: amount.value.fee }).then(() => {
       showModal(false);
    });
    isProcessing.value = false;
