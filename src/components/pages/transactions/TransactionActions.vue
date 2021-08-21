@@ -1,8 +1,8 @@
 <template>
    <div class="view-transaction-actions">
       <div class="header-content">
-         <h1 class="header-content-title">Your Transactions</h1>
-         <p class="header-content-subtitle">All of your pending/processed transactions in one place.</p>
+         <h1 class="header-content-title">Transaction History</h1>
+         <p class="header-content-subtitle">Globally processed/pending transactions.</p>
       </div>
 
       <div class="header-actions">

@@ -31,7 +31,7 @@ export async function getTransactions() {
          completed,
          datetime,
          amount: amount / 1e6,
-         fee
+         fee: fee / 1e6
       };
 
       if (data.scheduler_address === account?.address) user.push(transaction);

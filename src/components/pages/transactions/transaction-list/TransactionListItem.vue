@@ -1,6 +1,7 @@
 <template>
    <tr class="transaction-list-item">
       <td class="data-amount">{{ data.amount }}ꜩ</td>
+      <td class="data-fee">{{ data.fee }}ꜩ</td>
       <td class="data-address">{{ data.recipientAddress || 'Unknown' }}</td>
       <td class="data-date">{{ getRelativeDate(data.datetime) }}</td>
       <td class="data-status">

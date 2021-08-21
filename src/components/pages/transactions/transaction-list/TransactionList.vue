@@ -6,7 +6,8 @@
          <thead class="transaction-list-header">
             <tr>
                <th>Amount</th>
-               <th>Address</th>
+               <th>Fee</th>
+               <th>Recipient</th>
                <th>Date</th>
                <th>Status</th>
             </tr>

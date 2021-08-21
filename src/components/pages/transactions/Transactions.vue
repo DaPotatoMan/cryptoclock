@@ -13,7 +13,7 @@ const transactions = ref(null as null | Transactions);
 let updateTimerId: NodeJS.Timeout;
 const updateList = async () => {
    const data = await getTransactions();
-   transactions.value = data?.user;
+   transactions.value = data?.all;
    updateTimerId = setTimeout(updateList, 2000);
 };
 
