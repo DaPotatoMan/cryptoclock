@@ -8,8 +8,7 @@
       <div class="header-actions">
          <button class="header-actions-button" @click="switchTheme">
             <icon-ic-sharp-light-mode v-if="store.darkTheme" />
-            <icon-ic-sharp-dark-mode v-else />
-            Theme
+            <icon-ic-sharp-dark-mode v-else />Theme
          </button>
 
          <router-link to="/logout" draggable="false">
