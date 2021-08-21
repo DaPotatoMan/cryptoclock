@@ -1,4 +1,5 @@
 import { App } from 'vue';
+import './events';
 
 // Import Global APIs
 import 'vue-global-api/ref';

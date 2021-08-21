@@ -8,6 +8,8 @@ import { disconnectWallet } from '~/plugins/api/wallet/sdk';
 
 const router = useRouter();
 disconnectWallet().then(async () => {
+   events.all.clear();
+
    await router.push('/login');
    window.location.reload();
 });

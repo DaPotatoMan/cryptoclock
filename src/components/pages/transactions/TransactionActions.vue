@@ -6,6 +6,7 @@
       </div>
 
       <div class="header-actions">
+         <RunTransactions />
          <CTAButton @click="scheduleModal.showModal()">
             <icon-ic-baseline-add />Schedule
          </CTAButton>
@@ -34,15 +35,23 @@ const scheduleModal = ref();
    }
 
    .header-actions {
+      @apply flex;
+
       .cta-button {
          @apply text-default bg-default-elevated shadow-sm
-            active:(transform scale-97);
+         not-first-of-type:ml-3
+         active:(transform scale-97);
 
          svg {
             @apply h-auto w-20px mr-1;
          }
 
+         &.disabled {
+            @apply !bg-inverse/5;
+         }
+
          transition: transform 200ms;
+         --spinner-color: #6968dd;
       }
    }
 }

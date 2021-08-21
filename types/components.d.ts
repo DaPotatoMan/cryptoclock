@@ -15,6 +15,8 @@ declare module 'vue' {
     IconIcSharpLightMode: typeof import('virtual:vite-icons/ic/sharp-light-mode')['default']
     IconMdiKeyboardBackspace: typeof import('virtual:vite-icons/mdi/keyboard-backspace')['default']
     Modal: typeof import('./../src/components/common/Modal.vue')['default']
+    RunTransaction: typeof import('./../src/components/pages/transactions/RunTransaction.vue')['default']
+    RunTransactions: typeof import('./../src/components/pages/transactions/RunTransactions.vue')['default']
     ScheduleTransaction: typeof import('./../src/components/pages/transactions/schedule-modal/ScheduleTransaction.vue')['default']
     Spinner: typeof import('./../src/components/common/Spinner.vue')['default']
     TransactionActions: typeof import('./../src/components/pages/transactions/TransactionActions.vue')['default']
