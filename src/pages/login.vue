@@ -10,8 +10,11 @@
          <h1 class="header-label">CryptoClock.</h1>
 
          <ul class="header-links">
-            <li class="header-links-item">Contact Us</li>
-            <li class="header-links-item">About</li>
+            <a target="_blank" href="https://github.com/DaPotatoMan/cryptoclock">
+               <li class="header-links-item">
+                  <icon-octicon-mark-github-16 />Github
+               </li>
+            </a>
          </ul>
       </header>
 
@@ -29,7 +32,8 @@ html.theme-dark .view-login {
 }
 
 .view-login {
-   background: url(@assets/drawable/backgrounds/bg.svg) no-repeat center center fixed;
+   background: url(@assets/drawable/backgrounds/bg.svg) no-repeat center center
+      fixed;
    background-size: cover;
 
    &-header {
@@ -46,12 +50,16 @@ html.theme-dark .view-login {
          @apply ml-auto;
 
          &-item {
-            @apply inline-block ml-5 cursor-pointer
+            @apply ml-5 inline-flex items-center cursor-pointer
             underline underline-2 underline-transparent underline-offset-14
             hover:(underline-black underline-offset-8);
 
             transition: all 250ms ease;
             transition-property: color, text-decoration, text-underline-offset;
+
+            svg {
+               @apply mr-2;
+            }
          }
       }
    }
