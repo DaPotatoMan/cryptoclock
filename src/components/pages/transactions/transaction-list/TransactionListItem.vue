@@ -1,12 +1,15 @@
 <template>
-   <div class="transaction-list-item">
-      <div class="data-amount">{{ data.amount }}ꜩ</div>
-
-      <div class="data-details">
-         <span class="data-details-address">{{ data.recipientAddress || 'Unknown' }}</span>
-         <span class="data-details-date">{{ getRelativeDate(data.datetime) }}</span>
-      </div>
-   </div>
+   <tr class="transaction-list-item">
+      <td class="data-amount">{{ data.amount }}ꜩ</td>
+      <td class="data-address">{{ data.recipientAddress || 'Unknown' }}</td>
+      <td class="data-date">{{ getRelativeDate(data.datetime) }}</td>
+      <td class="data-status">
+         <span
+            class="data-status-label"
+            :class="{ pending: !data.completed }"
+         >{{ data.completed ? 'Completed' : 'Pending' }}</span>
+      </td>
+   </tr>
 </template>
 
 <script lang="ts" setup>
@@ -20,27 +23,41 @@ defineProps({
 });
 
 const baseDate = new Date();
-const getRelativeDate = (date: string) => formatRelative(new Date(date), baseDate);
+const getRelativeDate = (date: Date) => formatRelative(new Date(date), baseDate);
 </script>
 
 <style lang="postcss">
 .transaction-list-item {
-   @apply px-6 py-5 flex items-center;
+   @apply text-default/80;
 
    &:not(:last-of-type) {
       border-bottom: 1px dashed rgba(0, 0, 0, 0.085);
    }
 
-   .data-amount {
-      @apply mr-6 text-2xl font-medium;
-   }
+   .data {
+      &-amount {
+         @apply mr-6 text-xl font-medium;
+      }
 
-   .data-details {
-      @apply flex flex-col
-      break-all;
+      &-address {
+         @apply md:break-all
+         <md:(max-w-50px overflow-hidden overflow-ellipsis);
+      }
 
       &-date {
-         @apply text-sm text-default/70 first-letter:capitalize;
+         @apply first-letter:capitalize;
+      }
+
+      &-status {
+
+         &-label {
+            @apply px-3 py-1
+            rounded-full bg-teal-500/13 text-teal-600;
+
+            &.pending {
+               @apply bg-orange-500/13 text-orange-600;
+            }
+         }
       }
    }
 }

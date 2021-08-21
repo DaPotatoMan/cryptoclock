@@ -1,7 +1,7 @@
 <template>
    <main class="view-dashboard">
       <DashboardHeader />
-      <TransactionList />
+      <Transactions />
    </main>
 </template>
 

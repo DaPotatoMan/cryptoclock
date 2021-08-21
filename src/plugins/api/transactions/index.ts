@@ -18,12 +18,13 @@ export async function getTransactions() {
    storage.forEach((data) => {
       const {
          completed,
-         datetime,
          recipient: recipientAddress,
          scheduler_address: schedulerAddress
       } = data;
       const [amount] = data.amount.c;
       const [fee] = data.fee.c;
+      const datetime = new Date(data.datetime);
+
       const transaction = {
          schedulerAddress,
          recipientAddress,
@@ -37,6 +38,15 @@ export async function getTransactions() {
       all.push(transaction);
    });
 
+   // Sort
+   const sorter = (a: Transaction, b: Transaction) => {
+      if (a === b) return 0;
+      return a.datetime > b.datetime ? -1 : 1;
+   };
+
+   all.sort(sorter);
+   user.sort(sorter);
+
    return { all, user };
 }
 
@@ -47,7 +57,7 @@ export async function scheduleTransaction(data: TransactionData) {
    const operation = await contract.methods
       .schedule_transaction(
          amount * 1e6,
-         new Date(datetime).toISOString(),
+         datetime.toISOString(),
          fee * 1e6,
          data.recipientAddress
       )

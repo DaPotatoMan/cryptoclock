@@ -25,7 +25,6 @@ interface TransactionData {
 }
 
 interface Transaction extends TransactionData {
-   datetime: string;
    completed: boolean;
    schedulerAddress: string;
 }

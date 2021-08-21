@@ -1,97 +1,67 @@
 <template>
-   <section class="transaction-list">
-      <header class="transaction-list-header">
-         <div class="header-content">
-            <h1 class="header-content-title">Your Transactions</h1>
-            <p
-               class="header-content-subtitle"
-            >
-               All of your pending/processed transactions in one place.
-            </p>
-         </div>
+   <TransactionListEdgecase v-if="edgecase" :code="edgecase" />
 
-         <div class="header-actions">
-            <CTAButton @click="transactionModal.showModal()">
-               <icon-ic-baseline-add />Schedule
-            </CTAButton>
-         </div>
-      </header>
-   </section>
+   <div v-else-if="data" class="transaction-list-wrapper">
+      <table class="transaction-list">
+         <thead class="transaction-list-header">
+            <tr>
+               <th>Amount</th>
+               <th>Address</th>
+               <th>Date</th>
+               <th>Status</th>
+            </tr>
+         </thead>
 
-   <Spinner v-if="isLoading" class="transaction-list-loader" />
-   <TransactionListState v-else-if="list.length <= 0" />
-   <div v-else-if="list" class="transaction-list-items">
-      <TransactionListItem
-         v-for="(transaction, index) in list"
-         :key="index"
-         class="list-complete-item"
-         :data="transaction"
-      />
+         <tbody>
+            <TransactionListItem
+               v-for="(transaction, index) in data"
+               :key="index"
+               :data="transaction"
+               class="transaction-list-item"
+            />
+         </tbody>
+      </table>
    </div>
-
-   <ScheduleTransaction ref="transactionModal" />
 </template>
 
 <script lang="ts" setup>
-import { getTransactions } from '~/plugins/api/transactions';
+const props = defineProps({
+   data: {
+      type: Array as PropType<Transactions | null>,
+      default: null
+   }
+});
 
-const transactionModal = ref();
-const isLoading = ref(true);
-const list = ref([] as Transactions);
+const edgecase = computed(() => {
+   const { data } = props;
 
-let updateListTimer: NodeJS.Timeout;
-const updateList = async () => {
-   await getTransactions().then((data) => {
-      list.value = data.user;
-      updateListTimer = setTimeout(updateList, 2000);
-   });
-   isLoading.value = false;
-};
-
-updateList();
-onUnmounted(() => clearTimeout(updateListTimer));
+   if (data === null) return 'loading';
+   if (data?.length <= 0) return 'no-data';
+   return false;
+});
 </script>
 
 <style lang="postcss">
 .transaction-list {
-   &-header {
-      @apply flex justify-between items-center;
-
-      .header-content {
-         &-title {
-            @apply mb-1 font-medium text-[18px] sm:text-xl;
-         }
-
-         &-subtitle {
-            @apply <sm:hidden text-default/60;
-         }
-      }
-
-      .header-actions {
-         .cta-button {
-            @apply text-default bg-default-elevated shadow-sm
-            active:(transform scale-97);
-
-            svg {
-               @apply h-auto w-20px mr-1;
-            }
-
-            transition: transform 200ms;
-         }
-      }
-   }
-
-   &-loader {
-      @apply m-auto;
-
-      --spinner-color: rgb(105, 104, 221);
-      --spinner-size: 34px;
-      --spinner-border-size: 3px;
-   }
-
-   &-items {
-      @apply relative my-10 overflow-hidden
+   @apply w-full min-w-600px relative overflow-hidden
       bg-default-elevated rounded-md shadow-sm;
+
+   &-wrapper {
+      @apply pb-5 mt-10 overflow-x-auto
+      scrollbar-thin;
+   }
+
+   &-header {
+      th {
+         @apply py-5 px-6
+         text-left text-base font-medium;
+      }
+   }
+
+   &-item {
+      td {
+         @apply px-6 py-5;
+      }
    }
 }
 </style>
