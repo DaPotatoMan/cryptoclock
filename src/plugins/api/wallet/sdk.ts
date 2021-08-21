@@ -2,14 +2,15 @@ import store from '~/plugins/store';
 
 const { TezosToolkit, BeaconWallet } = window.walletUtils;
 
-const isProduction = import.meta.env.PROD;
-const rpcClient = import.meta.env.VITE_APP_RPC_CLIENT as string;
+const rpcClientType = import.meta.env.VITE_APP_RPC_CLIENT_TYPE as string;
+const rpcClientDomain = import.meta.env.VITE_APP_RPC_CLIENT_DOMAIN as string;
 const contractAddress = import.meta.env.VITE_APP_CONTRACT_ADDRESS as string;
+
 const network: any = {
-   type: isProduction ? 'mainnet' : 'florencenet'
+   type: rpcClientType
 };
 
-const tezos = new TezosToolkit(rpcClient);
+const tezos = new TezosToolkit(rpcClientDomain);
 const wallet = new BeaconWallet({
    name: 'Crypto Clock',
    preferredNetwork: network.type
