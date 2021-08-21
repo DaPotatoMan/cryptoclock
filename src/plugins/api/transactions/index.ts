@@ -12,9 +12,19 @@ export async function getTransactions() {
    const contract = await getContractInstance();
    const storage: RawTransactions = (await contract.storage()) || [];
 
-   const all = [] as Transactions;
-   const user = [] as Transactions;
+   const transactions: TransactionGroup = {
+      all: [],
+      user: [],
+      pending: []
+   };
 
+   // Sort storage
+   storage.sort((a, b) => {
+      if (a === b) return 0;
+      return Date.parse(a.datetime) > Date.parse(b.datetime) ? -1 : 1;
+   });
+
+   // Filter to groups
    storage.forEach((data) => {
       const {
          completed,
@@ -34,20 +44,12 @@ export async function getTransactions() {
          fee: fee / 1e6
       };
 
-      if (data.scheduler_address === account?.address) user.push(transaction);
-      all.push(transaction);
+      transactions.all.push(transaction);
+      if (!completed) transactions.pending.push(transaction);
+      if (schedulerAddress === account?.address) transactions.user.push(transaction);
    });
 
-   // Sort
-   const sorter = (a: Transaction, b: Transaction) => {
-      if (a === b) return 0;
-      return a.datetime > b.datetime ? -1 : 1;
-   };
-
-   all.sort(sorter);
-   user.sort(sorter);
-
-   return { all, user };
+   return transactions;
 }
 
 export async function scheduleTransaction(data: TransactionData) {

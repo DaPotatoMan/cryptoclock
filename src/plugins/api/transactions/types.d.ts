@@ -30,3 +30,9 @@ interface Transaction extends TransactionData {
 }
 
 type Transactions = Transaction[];
+
+interface TransactionGroup {
+   all: Transactions;
+   user: Transactions;
+   pending: Transactions;
+}
