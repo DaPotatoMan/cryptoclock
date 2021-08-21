@@ -6,9 +6,10 @@
       <td class="data-date">{{ getRelativeDate(data.datetime) }}</td>
       <td class="data-status">
          <span
-            class="data-status-label"
-            :class="{ pending: !data.completed }"
+            class="data-status-badge"
+            :class="{ warning: !data.completed }"
          >{{ data.completed ? 'Completed' : 'Pending' }}</span>
+         <span v-if="isOverdue" class="data-status-badge critical">Overdue</span>
       </td>
    </tr>
 </template>
@@ -16,7 +17,7 @@
 <script lang="ts" setup>
 import { formatRelative } from 'date-fns';
 
-defineProps({
+const props = defineProps({
    data: {
       type: Object as PropType<Transaction>,
       default: () => { }
@@ -24,6 +25,7 @@ defineProps({
 });
 
 const baseDate = new Date();
+const isOverdue = !props.data.completed && props.data.datetime < baseDate;
 const getRelativeDate = (date: Date) => formatRelative(new Date(date), baseDate);
 </script>
 
@@ -50,13 +52,16 @@ const getRelativeDate = (date: Date) => formatRelative(new Date(date), baseDate)
       }
 
       &-status {
+         &-badge {
+            @apply px-3 py-1 not-first-of-type:ml-2
+            rounded-full bg-teal-500/20 text-teal-600;
 
-         &-label {
-            @apply px-3 py-1
-            rounded-full bg-teal-500/13 text-teal-600;
+            &.warning {
+               @apply bg-orange-500/18 text-orange-600;
+            }
 
-            &.pending {
-               @apply bg-orange-500/13 text-orange-600;
+            &.critical {
+               @apply bg-red-500/20 text-red-600;
             }
          }
       }
