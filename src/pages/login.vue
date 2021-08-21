@@ -24,11 +24,17 @@
 </template>
 
 <style lang="postcss">
+html.theme-dark .view-login {
+   background-image: url(@assets/drawable/backgrounds/bg-dark.svg);
+}
+
 .view-login {
+   background: url(@assets/drawable/backgrounds/bg.svg) no-repeat center center fixed;
+   background-size: cover;
+
    &-header {
       @apply py-5 px-6 -mx-6 -mt-5
-      flex sticky top-0 z-2
-      bg-default;
+      flex sticky top-0 z-2;
 
       .header-label {
          @apply font-semibold;

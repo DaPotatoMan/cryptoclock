@@ -25,7 +25,6 @@ declare module 'vue' {
     TransactionList: typeof import('./../src/components/pages/transactions/transaction-list/TransactionList.vue')['default']
     TransactionListEdgecase: typeof import('./../src/components/pages/transactions/transaction-list/TransactionListEdgecase.vue')['default']
     TransactionListItem: typeof import('./../src/components/pages/transactions/transaction-list/TransactionListItem.vue')['default']
-    TransactionListState: typeof import('./../src/components/pages/transactions/transaction-list/TransactionListState.vue')['default']
     TransactionRecipient: typeof import('./../src/components/pages/transactions/schedule-modal/TransactionRecipient.vue')['default']
     Transactions: typeof import('./../src/components/pages/transactions/Transactions.vue')['default']
   }
