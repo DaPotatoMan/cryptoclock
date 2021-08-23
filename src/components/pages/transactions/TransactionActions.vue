@@ -22,20 +22,24 @@ const scheduleModal = ref();
 
 <style lang="postcss">
 .view-transaction-actions {
-   @apply flex justify-between items-center;
+   @apply flex flex-wrap justify-between items-center
+   <md:(flex-col items-start);
 
    .header-content {
+      @apply <md:mb-10;
+
       &-title {
-         @apply mb-1 font-medium text-[18px] sm:text-xl;
+         @apply mb-1 font-medium text-xl;
       }
 
       &-subtitle {
-         @apply <sm:hidden text-default/60;
+         @apply text-default/60;
       }
    }
 
    .header-actions {
-      @apply flex;
+      @apply flex flex-shrink-0
+      <md:ml-auto;
 
       .cta-button {
          @apply text-default bg-default-elevated shadow-sm
