@@ -1,9 +1,9 @@
 <template>
-   <div class="view-template">
+   <form class="view-template" @submit.prevent="finishProcess">
       <TransactionHeader title="Transaction Amount" subtitle="Amount to be sent" />
 
       <div class="view-form">
-         <button class="view-form-input-button" @click="amount--">
+         <button type="button" class="view-form-input-button" @click="amount--">
             <icon-ic-baseline-remove />
          </button>
 
@@ -16,13 +16,13 @@
             >
          </FormGroup>
 
-         <button class="view-form-input-button" @click="amount++">
+         <button type="button" class="view-form-input-button" @click="amount++">
             <icon-ic-baseline-add />
          </button>
       </div>
 
-      <CTAButton :disabled="amount <= 0" @click="finishProcess">Continue</CTAButton>
-   </div>
+      <CTAButton :disabled="amount <= 0" type="submit">Continue</CTAButton>
+   </form>
 </template>
 
 <style lang="postcss" scoped>
@@ -60,6 +60,6 @@ const amount = ref(5);
 const emit = defineEmits(['finish']);
 
 const finishProcess = () => {
-   emit('finish', 'amount', amount.value);
+   if (amount.value > 0) emit('finish', 'amount', amount.value);
 };
 </script>

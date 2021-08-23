@@ -1,5 +1,5 @@
 <template>
-   <div class="view-template">
+   <form class="view-template" @submit.prevent="finishProcess">
       <TransactionHeader title="Recipient Address" :can-go-back="false" />
 
       <FormGroup class="view-template-section">
@@ -9,8 +9,8 @@
          </template>
       </FormGroup>
 
-      <CTAButton :disabled="!isAddressValid" @click="finishProcess">Continue</CTAButton>
-   </div>
+      <CTAButton :disabled="!isAddressValid" type="submit">Continue</CTAButton>
+   </form>
 </template>
 
 <style lang="postcss" scoped>
@@ -34,7 +34,6 @@ const address = ref('');
 const isAddressValid = computed(() => validateAddress(address.value));
 
 const finishProcess = () => {
-   if (!isAddressValid.value) return;
-   emit('finish', 'recipientAddress', address.value);
+   if (isAddressValid.value) emit('finish', 'recipientAddress', address.value);
 };
 </script>
