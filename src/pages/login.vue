@@ -10,10 +10,14 @@
          <h1 class="header-label">CryptoClock.</h1>
 
          <ul class="header-links">
-            <a target="_blank" href="https://github.com/DaPotatoMan/cryptoclock">
-               <li class="header-links-item">
-                  <icon-octicon-mark-github-16 />Github
-               </li>
+            <a class="header-links-item" target="_blank" href="mailto:team@nat.app">Contact us</a>
+
+            <a
+               class="header-links-item"
+               target="_blank"
+               href="https://github.com/DaPotatoMan/cryptoclock"
+            >
+               <icon-octicon-mark-github-16 />Github
             </a>
          </ul>
       </header>
@@ -47,7 +51,7 @@ html.theme-dark .view-login {
       }
 
       .header-links {
-         @apply ml-auto;
+         @apply flex items-center ml-auto;
 
          &-item {
             @apply ml-5 inline-flex items-center cursor-pointer
