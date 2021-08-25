@@ -83,17 +83,21 @@ const invokeCancel = () => {
       }
 
       &-action-button {
-         @apply w-42px h-42px text-[18px]
+         @apply w-42px h-42px
          text-default bg-default rounded-full
          outline-none active:(transform scale-97);
-
-         --spinner-color: red;
-         transition: all 200ms ease;
-         transition-property: background-color, transform;
 
          &.loading {
             @apply bg-red-500/15;
          }
+
+         svg {
+            @apply w-20px h-20px;
+         }
+
+         --spinner-color: red;
+         transition: all 200ms ease;
+         transition-property: background-color, transform;
       }
    }
 }
