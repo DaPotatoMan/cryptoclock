@@ -36,21 +36,21 @@ export async function getTransactions() {
       const [amount] = data.amount.c;
       const [fee] = data.fee.c;
       const datetime = new Date(data.datetime);
+      const isOwn = schedulerAddress === account?.address;
 
       const transaction = {
          schedulerAddress,
          recipientAddress,
+         isOwn,
          completed,
          datetime,
          amount: amount / 1e6,
          fee: fee / 1e6
       };
 
-      transactions.all.push(transaction);
       if (!completed) transactions.pending.push(transaction);
-      if (schedulerAddress === account?.address) {
-         transactions.user.push(transaction);
-      }
+      if (isOwn) transactions.user.push(transaction);
+      transactions.all.push(transaction);
    });
 
    // Store transactions
@@ -95,4 +95,17 @@ export async function runTransactions() {
       console.error(error);
       return false;
    }
+}
+
+export async function cancelTransaction(data: Transaction) {
+   const contract = await getContractInstance();
+   const operation = await contract.methods
+      .cancel_transaction(
+         data.amount * 1e6,
+         data.datetime.toISOString(),
+         data.fee * 1e6,
+         data.recipientAddress
+      )
+      .send();
+   return operation.confirmation();
 }

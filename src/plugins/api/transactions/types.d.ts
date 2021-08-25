@@ -25,6 +25,7 @@ interface TransactionData {
 }
 
 interface Transaction extends TransactionData {
+   isOwn: boolean;
    completed: boolean;
    schedulerAddress: string;
 }

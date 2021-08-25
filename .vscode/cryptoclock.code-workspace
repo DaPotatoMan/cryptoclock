@@ -5,9 +5,6 @@
       },
       {
          "path": "..\\..\\wallet-utils"
-      },
-      {
-         "path": "..\\..\\tez-it-all"
       }
    ],
    "settings": {
