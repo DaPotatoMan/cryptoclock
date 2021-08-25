@@ -82,9 +82,11 @@ const amount = computed(() => {
 const showModal = inject('showModal');
 const schedule = async () => {
    isProcessing.value = true;
-   await scheduleTransaction({ ...props.data, fee: amount.value.fee }).then(() => {
-      showModal(false);
-   });
+
+   await scheduleTransaction({ ...props.data, fee: amount.value.fee })
+      .then(() => showModal(false))
+      .catch(console.error);
+
    isProcessing.value = false;
 };
 </script>
