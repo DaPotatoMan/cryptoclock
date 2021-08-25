@@ -6,7 +6,7 @@
       </div>
 
       <div class="header-actions">
-         <button class="header-actions-button" @click="switchTheme">
+         <button class="header-actions-button" @click="switchTheme()">
             <icon-ic-sharp-light-mode v-if="store.darkTheme" />
             <icon-ic-sharp-dark-mode v-else />Theme
          </button>
@@ -67,21 +67,25 @@ import store from '~/plugins/store';
 const root = ref();
 const isScrollTop = ref(true);
 
+// Methods
 const updateScroll = () => {
    const rect = root.value.getBoundingClientRect() as ClientRect;
    isScrollTop.value = rect.top !== 0;
 };
 
-onMounted(() => {
-   window.addEventListener('scroll', updateScroll);
-});
+const switchTheme = (firstLoad = false) => {
+   const { classList } = document.documentElement;
 
-onUnmounted(() => {
-   window.removeEventListener('scroll', updateScroll);
-});
-
-const switchTheme = () => {
-   const state = document.documentElement.classList.toggle('theme-dark');
-   store.value.darkTheme = state;
+   if (firstLoad) {
+      classList.toggle('theme-dark', store.value.darkTheme);
+   } else {
+      const state = classList.toggle('theme-dark');
+      store.value.darkTheme = state;
+   }
 };
+
+// Events
+switchTheme(true);
+onMounted(() => window.addEventListener('scroll', updateScroll));
+onUnmounted(() => window.removeEventListener('scroll', updateScroll));
 </script>
