@@ -1,0 +1,13 @@
+{
+   "name": "@cryptoclock/utils",
+   "version": "1.0.0",
+   "description": "Internal utilites for cryptoclock app",
+   "main": "./dist/index.js",
+   "typings": "./dist/index.d.ts",
+   "author": "@cryptoclock",
+   "license": "MIT",
+   "files": [
+      "package.json",
+      "dist/*"
+   ]
+}
