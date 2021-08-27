@@ -12,6 +12,7 @@ declare module 'vue' {
     IconIcBaselineCancel: typeof import('virtual:vite-icons/ic/baseline-cancel')['default']
     IconIcBaselineLogout: typeof import('virtual:vite-icons/ic/baseline-logout')['default']
     IconIcBaselineRemove: typeof import('virtual:vite-icons/ic/baseline-remove')['default']
+    IconIcOutlineContactSupport: typeof import('virtual:vite-icons/ic/outline-contact-support')['default']
     IconIcSharpDarkMode: typeof import('virtual:vite-icons/ic/sharp-dark-mode')['default']
     IconIcSharpLightMode: typeof import('virtual:vite-icons/ic/sharp-light-mode')['default']
     IconMdiKeyboardBackspace: typeof import('virtual:vite-icons/mdi/keyboard-backspace')['default']

@@ -1,3 +1,4 @@
+import '@cryptoclock/utils';
 import store from '~/plugins/store';
 
 const { TezosToolkit, BeaconWallet } = window.walletUtils;

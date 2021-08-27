@@ -9,9 +9,8 @@
     "lint": "eslint . --ext .js,.ts,.vue"
   },
   "dependencies": {
+    "@cryptoclock/utils": "^1.0.0",
     "@popperjs/core": "^2.9.3",
-    "@taquito/beacon-wallet": "^10.1.0",
-    "@taquito/taquito": "^10.1.0",
     "@vueuse/core": "^6.0.0",
     "date-fns": "^2.23.0",
     "mitt": "^3.0.0",
